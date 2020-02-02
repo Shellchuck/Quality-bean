@@ -31,11 +31,12 @@ public class Claim {
     @Past
     private LocalDateTime claimDate;
     private LocalDateTime closeDate;
-    private String customerId;
-    @NotBlank
-    private String responsibleId;
-    @NotBlank
-    private String statusId;
+
+//    private String customerId;
+//    @NotBlank
+//    private String responsibleId;
+//    @NotBlank
+//    private String statusId;
 
 
     @PrePersist
