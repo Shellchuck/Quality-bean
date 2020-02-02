@@ -4,8 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "defects")
@@ -19,6 +22,9 @@ public class Defect {
     private String name;
 
     private String defectCode;
+
+    @OneToMany(mappedBy = "defect")
+    private List<Analysis> analyses = new ArrayList<>();
 
 
 

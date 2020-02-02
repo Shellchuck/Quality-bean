@@ -4,11 +4,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "commodities")
@@ -28,6 +32,12 @@ public class Commodity {
 
     @Past
     private LocalDateTime revisionDate;
+
+    @ManyToMany(mappedBy = "commodities")
+    private List<Claim> claims = new ArrayList<>();
+
+    @ManyToOne
+    private Category category;
 
 
 
