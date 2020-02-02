@@ -40,5 +40,59 @@ public class Commodity {
     private Category category;
 
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getCommodityName() {
+        return commodityName;
+    }
+
+    public void setCommodityName(String commodityName) {
+        this.commodityName = commodityName;
+    }
+
+    public String getReferenceCode() {
+        return referenceCode;
+    }
+
+    public void setReferenceCode(String referenceCode) {
+        this.referenceCode = referenceCode;
+    }
+
+    public String getTechnicalSpec() {
+        return technicalSpec;
+    }
+
+    public void setTechnicalSpec(String technicalSpec) {
+        this.technicalSpec = technicalSpec;
+    }
+
+    public LocalDateTime getRevisionDate() {
+        return revisionDate;
+    }
+
+    public void setRevisionDate(LocalDateTime revisionDate) {
+        this.revisionDate = revisionDate;
+    }
+
+    public List<Claim> getClaims() {
+        return claims;
+    }
+
+    public void setClaims(List<Claim> claims) {
+        this.claims = claims;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }

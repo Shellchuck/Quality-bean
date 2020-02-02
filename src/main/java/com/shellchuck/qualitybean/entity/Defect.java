@@ -27,5 +27,35 @@ public class Defect {
     private List<Analysis> analyses = new ArrayList<>();
 
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDefectCode() {
+        return defectCode;
+    }
+
+    public void setDefectCode(String defectCode) {
+        this.defectCode = defectCode;
+    }
+
+    public List<Analysis> getAnalyses() {
+        return analyses;
+    }
+
+    public void setAnalyses(List<Analysis> analyses) {
+        this.analyses = analyses;
+    }
 }
