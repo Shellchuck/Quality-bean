@@ -18,7 +18,8 @@
         <tr>
             <td><c:out value="${department.name}"/></td>
             <td><c:out value="${department.departmentCode}"/></td>
-            <td><button type="button" onclick="location.href='/department/details/${department.id}'">Department details</button></td>
+            <td><button type="button" onclick="location.href='/department/change/${department.id}'">Edit department</button><br/>
+                <button type="button" onclick="location.href='/department/delete/${department.id}'">Delete department</button></td>
         </tr>
         </c:forEach>
     </table>

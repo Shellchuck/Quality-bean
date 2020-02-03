@@ -1,5 +1,7 @@
 package com.shellchuck.qualitybean.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +12,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +34,8 @@ public class Commodity {
     private String technicalSpec;
 
     @Past
-    private LocalDateTime revisionDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate revisionDate;
 
     @ManyToMany(mappedBy = "commodities")
     private List<Claim> claims = new ArrayList<>();
@@ -72,11 +76,11 @@ public class Commodity {
         this.technicalSpec = technicalSpec;
     }
 
-    public LocalDateTime getRevisionDate() {
+    public LocalDate getRevisionDate() {
         return revisionDate;
     }
 
-    public void setRevisionDate(LocalDateTime revisionDate) {
+    public void setRevisionDate(LocalDate revisionDate) {
         this.revisionDate = revisionDate;
     }
 

@@ -71,12 +71,12 @@ public class DepartmentController {
         return "/department/app-department-list";
     }
 
-    @RequestMapping(value = "/details/{id}", method = RequestMethod.GET)
-    public String departmentDetails(@PathVariable Integer id, Model model) {
-        Department department = departmentRepository.findById(id).get();
-        model.addAttribute("department", department);
-        return "/department/app-department-details";
-    }
+//    @RequestMapping(value = "/details/{id}", method = RequestMethod.GET)
+//    public String departmentDetails(@PathVariable Integer id, Model model) {
+//        Department department = departmentRepository.findById(id).get();
+//        model.addAttribute("department", department);
+//        return "/department/app-department-details";
+//    }
 
 
 }
