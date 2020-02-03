@@ -22,9 +22,9 @@ public class Responsible {
     private String firstName;
     @NotBlank
     private String lastName;
-    private String EmployeeCode;
+    private String employeeCode;
     @Email
-    private String Email;
+    private String email;
     private String phoneNo;
     private String password;
     private Boolean admin;
@@ -59,19 +59,19 @@ public class Responsible {
     }
 
     public String getEmployeeCode() {
-        return EmployeeCode;
+        return employeeCode;
     }
 
     public void setEmployeeCode(String employeeCode) {
-        EmployeeCode = employeeCode;
+        this.employeeCode = employeeCode;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public String getPhoneNo() {
