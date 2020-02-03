@@ -24,7 +24,7 @@ Commodity Details:<br/>
             <td><c:out value="${commodity.technicalSpec}"/></td>
             <td><c:out value="${commodity.revisionDate}"/></td>
             <td><c:out value="${commodity.category.categoryName}"/></td>
-            <td><button type="button" onclick="location.href='/commodity/details/${commodity.id}'">Commodity details</button></td>
+            <td><button type="button" onclick="location.href='/commodity/change/${commodity.id}'">Edit Commodity</button></td>
             <button type="button" onclick="location.href='/commodity/delete/${commodity.id}'">Delete commodity</button></td>
         </tr>
     </table>

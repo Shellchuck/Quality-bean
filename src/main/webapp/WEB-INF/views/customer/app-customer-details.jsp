@@ -13,7 +13,7 @@
         <tr>
             <th scope="col">First name</th>
             <th scope="col">Customer Address</th>
-            <th scope="col">Contact details</th>
+            <th scope="col">Contact Personal Data</th>
             <th scope="col">Contact Email</th>
             <th scope="col">Contact Phone number</th>
             <th scope="col">Claims</th>

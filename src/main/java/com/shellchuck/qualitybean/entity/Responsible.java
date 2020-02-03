@@ -58,6 +58,11 @@ public class Responsible {
         this.lastName = lastName;
     }
 
+
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
+
     public String getEmployeeCode() {
         return employeeCode;
     }
@@ -113,4 +118,6 @@ public class Responsible {
     public void setDepartment(Department department) {
         this.department = department;
     }
+
+
 }

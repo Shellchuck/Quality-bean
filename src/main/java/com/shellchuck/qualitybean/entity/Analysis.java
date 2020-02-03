@@ -37,15 +37,12 @@ public class Analysis {
     private LocalDateTime verificationDate;
 
     @ManyToOne
-    @NotNull
     private Claim claim;
 
     @ManyToOne
-    @NotNull
     private Responsible responsible;
 
     @ManyToOne
-    @NotNull
     private Defect defect;
 
 

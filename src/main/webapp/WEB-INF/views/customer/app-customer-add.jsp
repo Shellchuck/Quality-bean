@@ -16,7 +16,7 @@
         <form:errors path="name" cssClass="error"/><br/>
         Customer Address: <form:input path="address" /><br/>
         <form:errors path="address" cssClass="error"/><br/>
-        Contact details: <form:input path="contactName" /><br/>
+        Contact Personal Data: <form:input path="contactName" /><br/>
         <form:errors path="contactName" cssClass="error"/><br/>
         Contact Email: <form:input path="email" /><br/>
         <form:errors path="email" cssClass="error"/><br/>

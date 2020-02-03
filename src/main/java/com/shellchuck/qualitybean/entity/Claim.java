@@ -1,5 +1,7 @@
 package com.shellchuck.qualitybean.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +17,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,18 +33,27 @@ public class Claim {
 
     @NotBlank
     private String issueNo;
-    private String description;
-    private Integer quantity;
-    private Boolean recurrence;
-    private LocalDateTime createdOn;
-    private LocalDateTime updatedOn;
-    @Past
-    private LocalDateTime claimDate;
-    private LocalDateTime closeDate;
 
     @ManyToOne
     @NotNull
     private Customer customer;
+
+    @ManyToMany
+    @NotEmpty
+    private List<Commodity> commodities = new ArrayList<>();
+
+    private String description;
+    private Integer quantity;
+    private Boolean recurrence;
+    private String createdOn;
+    private String updatedOn;
+
+    @Past
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate claimDate;
+    @Past
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate closeDate;
 
     @ManyToOne
     @NotNull
@@ -54,18 +66,14 @@ public class Claim {
     @OneToMany(mappedBy = "claim")
     private List<Analysis> analyses = new ArrayList<>();
 
-    @ManyToMany
-    @NotEmpty
-    private List<Commodity> commodities = new ArrayList<>();
-
 
     @PrePersist
     public void prePersist() {
-        createdOn = LocalDateTime.now();
+        createdOn = (LocalDateTime.now()).toString();
     }
     @PreUpdate
     public void preUpdate() {
-        updatedOn = LocalDateTime.now();
+        updatedOn = (LocalDateTime.now()).toString();
     }
 
 
@@ -109,35 +117,35 @@ public class Claim {
         this.recurrence = recurrence;
     }
 
-    public LocalDateTime getCreatedOn() {
+    public String getCreatedOn() {
         return createdOn;
     }
 
-    public void setCreatedOn(LocalDateTime createdOn) {
+    public void setCreatedOn(String createdOn) {
         this.createdOn = createdOn;
     }
 
-    public LocalDateTime getUpdatedOn() {
+    public String getUpdatedOn() {
         return updatedOn;
     }
 
-    public void setUpdatedOn(LocalDateTime updatedOn) {
+    public void setUpdatedOn(String updatedOn) {
         this.updatedOn = updatedOn;
     }
 
-    public LocalDateTime getClaimDate() {
+    public LocalDate getClaimDate() {
         return claimDate;
     }
 
-    public void setClaimDate(LocalDateTime claimDate) {
+    public void setClaimDate(LocalDate claimDate) {
         this.claimDate = claimDate;
     }
 
-    public LocalDateTime getCloseDate() {
+    public LocalDate getCloseDate() {
         return closeDate;
     }
 
-    public void setCloseDate(LocalDateTime closeDate) {
+    public void setCloseDate(LocalDate closeDate) {
         this.closeDate = closeDate;
     }
 

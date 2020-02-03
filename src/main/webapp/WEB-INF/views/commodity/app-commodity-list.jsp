@@ -7,7 +7,7 @@
 </head>
 <body>
     Commodity List:<br><hr>
-    <button type="button" onclick="location.href='/commodity/add'">Add new commodity</button>
+    <button type="button" onclick="location.href='/commodity/add'">Add new commodity</button><br/>
     <table border="1">
         <tr>
             <th scope="col">Commodity name</th>
