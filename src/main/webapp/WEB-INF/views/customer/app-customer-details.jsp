@@ -6,7 +6,9 @@
     <title>Customer details</title>
 </head>
 <body>
-    Customer Details:<br><hr>
+    Customer Details:<br/>
+    <button type="button" onclick="location.href='/customer/list'">Back to the list</button></td><br/>
+    <hr>
     <table border="1">
         <tr>
             <th scope="col">First name</th>
