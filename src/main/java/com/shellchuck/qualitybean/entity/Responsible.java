@@ -22,7 +22,6 @@ public class Responsible {
     private String firstName;
     @NotBlank
     private String lastName;
-    @NotBlank
     private String EmployeeCode;
     @Email
     private String Email;
