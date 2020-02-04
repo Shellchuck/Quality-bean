@@ -1,6 +1,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Claim form</title>
@@ -28,12 +29,13 @@
         <form:errors path="claimDate" cssClass="error"/><br/>
         Closure date: <form:input path="closeDate" placeholder="yyyy-MM-dd"/><br/>
         <form:errors path="closeDate" cssClass="error"/><br/>
-        Responsible Person for Analysis: <form:select path="responsible" items="${allResponsibles}" itemValue="id" itemLabel="fullName"/><br/>
+        Responsible Person for Claim management: <form:select path="responsible" items="${allResponsibles}" itemValue="id" itemLabel="fullName"/><br/>
         <form:errors path="responsible" cssClass="error"/><br/>
         Current status: <form:select path="status" items="${allStatuses}" itemValue="id" itemLabel="status"/><br/>
         <form:errors path="status" cssClass="error"/><br/>
-        Analyses: <form:select path="analyses" items="${allAnalyses}" itemValue="id" itemLabel="analysisCode"/><br/>
-        <form:errors path="analyses" cssClass="error"/><br/>
+        <%--Analyses: <form:select path="analyses" items="${allAnalyses}" itemValue="id" itemLabel="analysisCode"/><br/>
+        <form:errors path="analyses" cssClass="error"/><br/>--%>
+        <c:hidden path="analyses"/>
         <form:hidden path="createdOn"/>
         <input type="submit" value="Save Claim">
     </form:form>

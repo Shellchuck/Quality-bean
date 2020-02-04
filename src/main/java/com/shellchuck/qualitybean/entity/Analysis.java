@@ -1,5 +1,7 @@
 package com.shellchuck.qualitybean.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,29 +23,37 @@ public class Analysis {
 
     @NotBlank
     private String analysisCode;
+
+    @ManyToOne
+    private Defect defect;
+
+    @ManyToOne
+    private Responsible responsible;
+
+    @ManyToOne
+    private Claim claim;
+
     @NotBlank
     private String containment;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime containmentDate;
 
     private String rootCause;
 
     private String correctiveActions;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+
     private LocalDateTime correctiveDate;
 
     private String verification;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+
     private LocalDateTime verificationDate;
 
-    @ManyToOne
-    private Claim claim;
 
-    @ManyToOne
-    private Responsible responsible;
-
-    @ManyToOne
-    private Defect defect;
 
 
     public Integer getId() {

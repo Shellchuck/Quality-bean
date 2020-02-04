@@ -20,7 +20,7 @@ Claims:<br><hr>
         <th scope="col">Updated</th>
         <th scope="col">Notification date</th>
         <th scope="col">Closure date</th>
-        <th scope="col">Responsible Person</th>
+        <th scope="col">Responsible Person for claim management</th>
         <th scope="col">Current status</th>
         <th scope="col">Analyses</th>
         <th></th>
