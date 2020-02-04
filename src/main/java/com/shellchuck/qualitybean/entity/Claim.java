@@ -45,8 +45,10 @@ public class Claim {
     private String description;
     private Integer quantity;
     private Boolean recurrence;
-    private String createdOn;
-    private String updatedOn;
+    @DateTimeFormat(pattern = "yyyy/MM/dd hh:mm:ss")
+    private LocalDateTime createdOn;
+    @DateTimeFormat(pattern = "yyyy/MM/dd hh:mm:ss")
+    private LocalDateTime updatedOn;
 
     @Past
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -69,11 +71,11 @@ public class Claim {
 
     @PrePersist
     public void prePersist() {
-        createdOn = (LocalDateTime.now()).toString();
+        createdOn = LocalDateTime.now();
     }
     @PreUpdate
     public void preUpdate() {
-        updatedOn = (LocalDateTime.now()).toString();
+        updatedOn = LocalDateTime.now();
     }
 
 
@@ -117,19 +119,19 @@ public class Claim {
         this.recurrence = recurrence;
     }
 
-    public String getCreatedOn() {
+    public LocalDateTime getCreatedOn() {
         return createdOn;
     }
 
-    public void setCreatedOn(String createdOn) {
+    public void setCreatedOn(LocalDateTime createdOn) {
         this.createdOn = createdOn;
     }
 
-    public String getUpdatedOn() {
+    public LocalDateTime getUpdatedOn() {
         return updatedOn;
     }
 
-    public void setUpdatedOn(String updatedOn) {
+    public void setUpdatedOn(LocalDateTime updatedOn) {
         this.updatedOn = updatedOn;
     }
 

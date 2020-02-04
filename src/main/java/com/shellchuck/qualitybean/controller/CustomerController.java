@@ -17,7 +17,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/customer")
+@RequestMapping("/app/customer")
 public class CustomerController {
 
     private CustomerRepository customerRepository;
@@ -42,7 +42,7 @@ public class CustomerController {
         }
         customerRepository.save(customer);
         model.addAttribute("customer", customer);
-        return "redirect:/customer/list";   // powinno byc na app main page
+        return "redirect:/app/customer/list";   // powinno byc na app main page
     }
 
     @RequestMapping(value = "/change/{id}", method = RequestMethod.GET)
@@ -59,14 +59,14 @@ public class CustomerController {
         }
         customerRepository.save(customer);
         model.addAttribute("customer", customer);
-        return "redirect:/customer/list";   // powinno byc na app main page
+        return "redirect:/app/customer/list";   // powinno byc na app main page
     }
 
     @RequestMapping("/delete/{id}")
     public String deleteCustomer(@PathVariable Integer id) {
         Customer customer = customerRepository.findById(id).get();
         customerRepository.delete(customer);
-        return "redirect:/customer/list";   // powinno byc na app main page
+        return "redirect:/app/customer/list";   // powinno byc na app main page
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)

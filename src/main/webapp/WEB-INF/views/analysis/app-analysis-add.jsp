@@ -11,13 +11,16 @@
     </style>
 </head>
 <body>
+<button type="button" onclick="location.href='/app'">User Panel</button><br/><br/>
+
     <form:form method="post" modelAttribute="analysis">
         Analysis code: <form:input path="analysisCode" /><br/>
         <form:errors path="analysisCode" cssClass="error"/><br/>
         Defect type: <form:select path="defect" items="${allDefects}" itemValue="id" itemLabel="name"/><br/>
         <form:errors path="defect" cssClass="error"/><br/>
-        Responsible Person for Analysis: <form:select path="responsible" items="${allResponsibles}" itemValue="id" itemLabel="fullName"/><br/>
+        Responsible person for analysis: <form:select path="responsible" items="${allResponsibles}" itemValue="id" itemLabel="fullName"/><br/>
         <form:errors path="responsible" cssClass="error"/><br/>
+        <form:hidden path="claim"/>
         Containment actions: <form:textarea rows="10" cols="40"  path="containment" /><br/>
         <form:errors path="containment" cssClass="error"/><br/>
         Containment implementation: <form:input path="containmentDate" placeholder="yyyy-MM-dd"/><br/>

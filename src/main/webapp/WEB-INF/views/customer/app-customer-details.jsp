@@ -7,7 +7,7 @@
 </head>
 <body>
     Customer Details:<br/>
-    <button type="button" onclick="location.href='/customer/list'">Back to the list</button></td><br/>
+    <button type="button" onclick="location.href='/app/customer/list'">Back to the list</button></td><br/>
     <hr>
     <table border="1">
         <tr>
@@ -26,8 +26,8 @@
             <td><c:out value="${customer.email}"/></td>
             <td><c:out value="${customer.phoneNo}"/></td>
             <td><c:out value=""/></td>
-            <td><button type="button" onclick="location.href='/customer/change/${customer.id}'">Edit customer</button><br/>
-            <button type="button" onclick="location.href='/customer/delete/${customer.id}'">Delete customer</button></td>
+            <td><button type="button" onclick="location.href='/app/customer/change/${customer.id}'">Edit customer</button><br/>
+            <button type="button" onclick="location.href='/app/customer/delete/${customer.id}'">Delete customer</button></td>
         </tr>
     </table>
         <hr>

@@ -7,7 +7,7 @@
 </head>
 <body>
 Commodity Details:<br/>
-<button type="button" onclick="location.href='/commodity/list'">Back to the list</button></td><br/>
+<button type="button" onclick="location.href='/app/commodity/list'">Back to the list</button></td><br/>
 <hr>
     <table border="1">
         <tr>
@@ -24,8 +24,8 @@ Commodity Details:<br/>
             <td><c:out value="${commodity.technicalSpec}"/></td>
             <td><c:out value="${commodity.revisionDate}"/></td>
             <td><c:out value="${commodity.category.categoryName}"/></td>
-            <td><button type="button" onclick="location.href='/commodity/change/${commodity.id}'">Edit Commodity</button></td>
-            <button type="button" onclick="location.href='/commodity/delete/${commodity.id}'">Delete commodity</button></td>
+            <td><button type="button" onclick="location.href='/app/commodity/change/${commodity.id}'">Edit Commodity</button></td>
+            <button type="button" onclick="location.href='/app/commodity/delete/${commodity.id}'">Delete commodity</button></td>
         </tr>
     </table>
         <hr>

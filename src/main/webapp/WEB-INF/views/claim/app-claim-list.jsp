@@ -6,8 +6,12 @@
     <title>Claim List</title>
 </head>
 <body>
-    Claims:<br><hr>
-    <button type="button" onclick="location.href='/claim/add'">Add new claim</button><br/>
+<button type="button" onclick="location.href='/app'">User Panel</button><br/><br/>
+
+    
+
+    Recently added claims:<br><hr>
+<%--    <button type="button" onclick="location.href='/app/claim/add'">Add new claim</button><br/>--%>
     <table border="1">
         <tr>
             <th scope="col">Issue Number</th>
@@ -48,7 +52,7 @@
 <%--                <c:out value="${analyse.analysisCode}"/>--%>
 <%--                </c:forEach>--%>
 <%--            </td>--%>
-            <td><button type="button" onclick="location.href='/claim/details/${claim.id}'">Claim details</button></td>
+            <td><button type="button" onclick="location.href='/app/claim/details/${claim.id}'">Claim details</button></td>
         </tr>
         </c:forEach>
     </table>

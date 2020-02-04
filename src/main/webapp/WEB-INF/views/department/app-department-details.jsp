@@ -7,7 +7,7 @@
 </head>
 <body>
 Department Details:<br/>
-<button type="button" onclick="location.href='/department/list'">Back to the list</button></td><br/>
+<button type="button" onclick="location.href='/app/department/list'">Back to the list</button></td><br/>
 <hr>
     <table border="1">
         <tr>
@@ -18,8 +18,8 @@ Department Details:<br/>
         <tr>
             <td><c:out value="${department.name}"/></td>
             <td><c:out value="${department.departmentCode}"/></td>
-            <td><button type="button" onclick="location.href='/department/change/${department.id}'">Edit department</button><br/>
-            <button type="button" onclick="location.href='/department/delete/${department.id}'">Delete department</button></td>
+            <td><button type="button" onclick="location.href='/app/department/change/${department.id}'">Edit department</button><br/>
+            <button type="button" onclick="location.href='/app/department/delete/${department.id}'">Delete department</button></td>
         </tr>
     </table>
         <hr>

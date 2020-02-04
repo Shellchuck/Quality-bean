@@ -12,9 +12,11 @@
     </style>
 </head>
 <body>
+<button type="button" onclick="location.href='/app'">User Panel</button><br/><br/>
+
     <form:form method="post" modelAttribute="claim">
         Issue Number: <form:input path="issueNo" /><br/>
-        <form:errors path="customer" cssClass="error"/><br/>
+        <form:errors path="issueNo" cssClass="error"/><br/>
         Customer: <form:select path="customer" items="${allCustomers}" itemValue="id" itemLabel="name"/><br/>
         <form:errors path="customer" cssClass="error"/><br/>
         Commodities: <form:select path="commodities" items="${allCommodities}" itemValue="id" itemLabel="commodityName"/><br/>
@@ -33,8 +35,6 @@
         <form:errors path="responsible" cssClass="error"/><br/>
         Current status: <form:select path="status" items="${allStatuses}" itemValue="id" itemLabel="status"/><br/>
         <form:errors path="status" cssClass="error"/><br/>
-        <%--Analyses: <form:select path="analyses" items="${allAnalyses}" itemValue="id" itemLabel="analysisCode"/><br/>
-        <form:errors path="analyses" cssClass="error"/><br/>--%>
         <c:hidden path="analyses"/>
         <form:hidden path="createdOn"/>
         <input type="submit" value="Save Claim">

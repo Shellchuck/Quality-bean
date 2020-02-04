@@ -11,6 +11,8 @@
     </style>
 </head>
 <body>
+<button type="button" onclick="location.href='/app'">User Panel</button><br/><br/>
+
     <form:form method="post" modelAttribute="commodity">
         Commodity name: <form:input path="commodityName" /><br/>
         <form:errors path="commodityName" cssClass="error"/><br/>

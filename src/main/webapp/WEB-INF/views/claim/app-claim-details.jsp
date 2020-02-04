@@ -7,7 +7,7 @@
 </head>
 <body>
 Claims:<br><hr>
-<button type="button" onclick="location.href='/claim/list'">Back to the list</button></td><br/>
+<button type="button" onclick="location.href='/app/claim/list'">Back to the list</button></td><br/>
 <table border="1">
     <tr>
         <th scope="col">Issue Number</th>
@@ -36,19 +36,20 @@ Claims:<br><hr>
             <td><c:out value="${claim.description}"/></td>
             <td><c:out value="${claim.quantity}"/></td>
             <td><c:out value="${claim.recurrence}"/></td>
-            <td><c:out value="${claim.createdOn}"/></td>
-            <td><c:out value="${claim.updatedOn}"/></td>
+            <td><c:out value="${claim.createdOn.toString()}"/></td>
+            <td><c:out value="${claim.updatedOn.toString()}"/></td>
             <td><c:out value="${claim.claimDate}"/></td>
             <td><c:out value="${claim.closeDate}"/></td>
             <td><c:out value="${claim.responsible.fullName}"/></td>
             <td><c:out value="${claim.status.status}"/></td>
             <td>
                 <c:forEach items="${claim.analyses}" var="analyse">
-                    <c:out value="${analyse.analysisCode}"/>
+                <a href='/app/analysis/details/${analyse.id}'>${analyse.analysisCode}</a>
                 </c:forEach>
             </td>
-            <td><button type="button" onclick="location.href='/claim/change/${claim.id}'">Edit claim</button><br/>
-            <button type="button" onclick="location.href='/claim/delete/${claim.id}'">Delete claim</button></td>
+            <td><button type="button" onclick="location.href='/app/claim/change/${claim.id}'">Edit claim</button><br/>
+            <button type="button" onclick="location.href='/app/claim/delete/${claim.id}'">Delete claim</button><br/>  <%--Nie działa!!!--%>
+            <button type="button" onclick="location.href='/app/analysis/add/${claim.id}'">Open new Analysis</button></td>
         </tr>
 </table>
 <hr>

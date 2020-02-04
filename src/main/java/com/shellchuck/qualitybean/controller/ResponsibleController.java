@@ -18,7 +18,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/responsible")
+@RequestMapping("/app/responsible")
 public class ResponsibleController {
 
     private ResponsibleRepository responsibleRepository;
@@ -43,7 +43,7 @@ public class ResponsibleController {
         }
         responsibleRepository.save(responsible);
         model.addAttribute("responsible", responsible);
-        return "redirect:/responsible/list";
+        return "redirect:/app/responsible/list";
     }
 
     @RequestMapping(value = "/change/{id}", method = RequestMethod.GET)
@@ -60,14 +60,14 @@ public class ResponsibleController {
         }
         responsibleRepository.save(responsible);
         model.addAttribute("responsible", responsible);
-        return "redirect:/responsible/list";
+        return "redirect:/app/responsible/list";
     }
 
     @RequestMapping("/delete/{id}")
     public String deleteResponsible(@PathVariable Integer id) {
         Responsible responsible = responsibleRepository.findById(id).get();
         responsibleRepository.delete(responsible);
-        return "redirect:/responsible/list";
+        return "redirect:/app/responsible/list";
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)

@@ -6,8 +6,10 @@
     <title>Customer List</title>
 </head>
 <body>
+<button type="button" onclick="location.href='/app'">User Panel</button><br/><br/>
+
     Customers:<br><hr>
-    <button type="button" onclick="location.href='/customer/add'">Add new customer</button>
+    <button type="button" onclick="location.href='/app/customer/add'">Add new customer</button>
     <table border="1">
         <tr>
             <th scope="col">First name</th>
@@ -24,7 +26,7 @@
 <%--            <td><c:out value="${customer.contactName}"/></td>--%>
 <%--            <td><c:out value="${customer.email}"/></td>--%>
 <%--            <td><c:out value="${customer.phoneNo}"/></td>--%>
-            <td><button type="button" onclick="location.href='/customer/details/${customer.id}'">Customer details</button></td>
+            <td><button type="button" onclick="location.href='/app/customer/details/${customer.id}'">Customer details</button></td>
         </tr>
         </c:forEach>
     </table>

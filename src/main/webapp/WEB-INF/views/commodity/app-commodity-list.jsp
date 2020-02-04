@@ -6,8 +6,10 @@
     <title>Commodity List</title>
 </head>
 <body>
+<button type="button" onclick="location.href='/app'">User Panel</button><br/><br/>
+
     Commodity List:<br><hr>
-    <button type="button" onclick="location.href='/commodity/add'">Add new commodity</button><br/>
+    <button type="button" onclick="location.href='/app/commodity/add'">Add new commodity</button><br/>
     <table border="1">
         <tr>
             <th scope="col">Commodity name</th>
@@ -24,8 +26,8 @@
             <td><c:out value="${commodity.technicalSpec}"/></td>
             <td><c:out value="${commodity.revisionDate}"/></td>
             <td><c:out value="${commodity.category.categoryName}"/></td>
-            <td><button type="button" onclick="location.href='/commodity/change/${commodity.id}'">Edit commodity</button>&nbsp;
-            <button type="button" onclick="location.href='/commodity/delete/${commodity.id}'">Delete commodity</button></td>
+            <td><button type="button" onclick="location.href='/app/commodity/change/${commodity.id}'">Edit commodity</button>&nbsp;
+            <button type="button" onclick="location.href='/app/commodity/delete/${commodity.id}'">Delete commodity</button></td>
         </tr>
         </c:forEach>
     </table>

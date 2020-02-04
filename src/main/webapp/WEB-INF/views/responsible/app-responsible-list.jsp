@@ -6,8 +6,10 @@
     <title>Responsible List</title>
 </head>
 <body>
+<button type="button" onclick="location.href='/app'">User Panel</button><br/><br/>
+
     Responsible List:<br><hr>
-    <button type="button" onclick="location.href='/responsible/add'">Add new responsible</button>
+    <button type="button" onclick="location.href='/app/responsible/add'">Add new responsible</button>
     <table border="1">
         <tr>
             <th scope="col">First name</th>
@@ -26,8 +28,8 @@
             <td><c:out value="${responsible.email}"/></td>
             <td><c:out value="${responsible.phoneNo}"/></td>
             <td><c:out value="${responsible.department.name}"/></td>
-            <td><button type="button" onclick="location.href='/responsible/change/${responsible.id}'">Edit Responsible Person</button>&nbsp;
-            <button type="button" onclick="location.href='/responsible/delete/${responsible.id}'">Delete Responsible Person</button></td>
+            <td><button type="button" onclick="location.href='/app/responsible/change/${responsible.id}'">Edit Responsible Person</button>&nbsp;
+            <button type="button" onclick="location.href='/app/responsible/delete/${responsible.id}'">Delete Responsible Person</button></td>
         </tr>
         </c:forEach>
     </table>

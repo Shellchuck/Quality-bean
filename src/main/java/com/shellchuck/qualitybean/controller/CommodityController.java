@@ -17,7 +17,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/commodity")
+@RequestMapping("/app/commodity")
 public class CommodityController {
 
     private CommodityRepository commodityRepository;
@@ -42,7 +42,7 @@ public class CommodityController {
         }
         commodityRepository.save(commodity);
         model.addAttribute("commodity", commodity);
-        return "redirect:/commodity/list";
+        return "redirect:/app/commodity/list";
     }
 
     @RequestMapping(value = "/change/{id}", method = RequestMethod.GET)
@@ -59,19 +59,19 @@ public class CommodityController {
         }
         commodityRepository.save(commodity);
         model.addAttribute("commodity", commodity);
-        return "redirect:/commodity/list";
+        return "redirect:/app/commodity/list";
     }
 
     @RequestMapping("/delete/{id}")
     public String deleteCommodity(@PathVariable Integer id) {
         Commodity commodity = commodityRepository.findById(id).get();
         commodityRepository.delete(commodity);
-        return "redirect:/commodity/list";
+        return "redirect:/app/commodity/list";
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String listCommodity(Model model) {
-        List<Commodity> allComm = commodityRepository.findAll();
+        List<Commodity> allComm = commodityRepository.findAllByOrderByReferenceCode();
         model.addAttribute("allComm", allComm);
         return "/commodity/app-commodity-list";
     }

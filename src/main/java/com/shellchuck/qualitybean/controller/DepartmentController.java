@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/department")
+@RequestMapping("/app/department")
 public class DepartmentController {
 
     private DepartmentRepository departmentRepository;
@@ -37,7 +37,7 @@ public class DepartmentController {
         }
         departmentRepository.save(department);
         model.addAttribute("department", department);
-        return "redirect:/department/list";   // powinno byc na app admin page
+        return "redirect:/app/department/list";   // powinno byc na app admin page
     }
 
     @RequestMapping(value = "/change/{id}", method = RequestMethod.GET)
@@ -54,14 +54,14 @@ public class DepartmentController {
         }
         departmentRepository.save(department);
         model.addAttribute("department", department);
-        return "redirect:/department/list";   // powinno byc na app admin page
+        return "redirect:/app/department/list";   // powinno byc na app admin page
     }
 
     @RequestMapping("/delete/{id}")
     public String deleteDepartment(@PathVariable Integer id) {
         Department department = departmentRepository.findById(id).get();
         departmentRepository.delete(department);
-        return "redirect:/department/list";   // powinno byc na app admin page
+        return "redirect:/app/department/list";   // powinno byc na app admin page
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)

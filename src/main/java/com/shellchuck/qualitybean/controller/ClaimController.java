@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
-@RequestMapping("/claim")
+@RequestMapping("/app/claim")
 public class ClaimController {
 
     private ClaimRepository claimRepository;
@@ -60,7 +60,7 @@ public class ClaimController {
         }
         claimRepository.save(claim);
         model.addAttribute("claim", claim);
-        return "redirect:/claim/list";
+        return "redirect:/app/claim/list";
     }
 
     @RequestMapping(value = "/change/{id}", method = RequestMethod.GET)
@@ -77,19 +77,19 @@ public class ClaimController {
         }
         claimRepository.save(claim);
         model.addAttribute("claim", claim);
-        return "redirect:/claim/list";
+        return "redirect:/app/claim/list";
     }
 
     @RequestMapping("/delete/{id}")
     public String deleteClaim(@PathVariable Integer id) {
         Claim claim = claimRepository.findById(id).get();
         claimRepository.delete(claim);
-        return "redirect:/claim/list";
+        return "redirect:/app/claim/list";
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String listClaims(Model model) {
-        List<Claim> allClaims = claimRepository.findAll();
+        List<Claim> allClaims = claimRepository.findAllByOrderByCreatedOnDesc();
         model.addAttribute("allClaims", allClaims);
         return "/claim/app-claim-list";
     }
@@ -125,5 +125,7 @@ public class ClaimController {
     public List<Analysis> getAllAnalyses() {
         return analysisRepository.findAll();
     }
+
+
 
 }

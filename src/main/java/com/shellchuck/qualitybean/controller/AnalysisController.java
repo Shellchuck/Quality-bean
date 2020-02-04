@@ -2,6 +2,8 @@ package com.shellchuck.qualitybean.controller;
 
 import com.shellchuck.qualitybean.entity.Analysis;
 import com.shellchuck.qualitybean.entity.Claim;
+import com.shellchuck.qualitybean.entity.Defect;
+import com.shellchuck.qualitybean.entity.Responsible;
 import com.shellchuck.qualitybean.repository.AnalysisRepository;
 import com.shellchuck.qualitybean.repository.ClaimRepository;
 import com.shellchuck.qualitybean.repository.DefectRepository;
@@ -9,6 +11,7 @@ import com.shellchuck.qualitybean.repository.ResponsibleRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,7 +20,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/analysis")
+@RequestMapping("/app/analysis")
 public class AnalysisController {
 
     private AnalysisRepository analysisRepository;
@@ -34,21 +37,22 @@ public class AnalysisController {
     }
 
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String addForm(Model model) {
+    @RequestMapping(value = "/add/{claimId}", method = RequestMethod.GET)
+    public String addForm(Model model, @PathVariable Integer claimId) {
         Analysis analysis = new Analysis();
+        analysis.setClaim(claimRepository.findById(claimId).get());
         model.addAttribute("analysis", analysis);
         return "/analysis/app-analysis-add";
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/add/{id}", method = RequestMethod.POST)
     public String saveAnalysis(@Valid Analysis analysis, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "/analysis/app-analysis-add";
         }
         analysisRepository.save(analysis);
         model.addAttribute("analysis", analysis);
-        return "redirect:/analysis/list";
+        return "redirect:/app/analysis/list";
     }
 
     @RequestMapping(value = "/change/{id}", method = RequestMethod.GET)
@@ -65,19 +69,20 @@ public class AnalysisController {
         }
         analysisRepository.save(analysis);
         model.addAttribute("analysis", analysis);
-        return "redirect:/analysis/list";
+        return "/analysis/app-analysis-details";
     }
 
     @RequestMapping("/delete/{id}")
     public String deleteAnalysis(@PathVariable Integer id) {
         Analysis analysis = analysisRepository.findById(id).get();
         analysisRepository.delete(analysis);
-        return "redirect:/analysis/list";
+        return "redirect:/app/analysis/list";
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String listAnalysis(Model model) {
-        List<Analysis> allAnalyses = analysisRepository.findAll();
+        //List<Analysis> allAnalyses = analysisRepository.findAll();
+        List<Analysis> allAnalyses = analysisRepository.findAllByOrderByDefectDesc();
         model.addAttribute("allAnalyses", allAnalyses);
         return "/analysis/app-analysis-list";
     }
@@ -86,8 +91,16 @@ public class AnalysisController {
     public String customerAnalysis(@PathVariable Integer id, Model model) {
         Analysis analysis = analysisRepository.findById(id).get();
         model.addAttribute("analysis", analysis);
-        return "/analysis/app-claim-analysis";
+        return "/analysis/app-analysis-details";
     }
 
+    @ModelAttribute("allResponsibles")
+    public List<Responsible> getAllResponsibles() {
+        return responsibleRepository.findAll();
+    }
 
+    @ModelAttribute("allDefects")
+    public List<Defect> getAllDefects() {
+        return defectRepository.findAll();
+    }
 }

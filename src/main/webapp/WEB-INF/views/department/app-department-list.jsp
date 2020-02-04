@@ -6,8 +6,10 @@
     <title>Department List</title>
 </head>
 <body>
+<button type="button" onclick="location.href='/app'">User Panel</button><br/><br/>
+
     Department List:<br><hr>
-    <button type="button" onclick="location.href='/department/add'">Add new department</button>
+    <button type="button" onclick="location.href='/app/department/add'">Add new department</button>
     <table border="1">
         <tr>
             <th scope="col">Department name</th>
@@ -18,8 +20,8 @@
         <tr>
             <td><c:out value="${department.name}"/></td>
             <td><c:out value="${department.departmentCode}"/></td>
-            <td><button type="button" onclick="location.href='/department/change/${department.id}'">Edit department</button><br/>
-                <button type="button" onclick="location.href='/department/delete/${department.id}'">Delete department</button></td>
+            <td><button type="button" onclick="location.href='/app/department/change/${department.id}'">Edit department</button><br/>
+                <button type="button" onclick="location.href='/app/department/delete/${department.id}'">Delete department</button></td>
         </tr>
         </c:forEach>
     </table>

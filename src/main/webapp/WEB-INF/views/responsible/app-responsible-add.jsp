@@ -11,6 +11,8 @@
     </style>
 </head>
 <body>
+<button type="button" onclick="location.href='/app'">User Panel</button><br/><br/>
+
     <form:form method="post" modelAttribute="responsible">
         First name: <form:input path="firstName" /><br/>
         <form:errors path="firstName" cssClass="error"/><br/>
