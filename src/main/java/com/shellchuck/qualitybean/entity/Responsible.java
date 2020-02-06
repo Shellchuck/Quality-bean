@@ -1,14 +1,21 @@
 package com.shellchuck.qualitybean.entity;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity
 @Table(name = "responsibles")
@@ -26,9 +33,19 @@ public class Responsible {
     @Email
     private String email;
     private String phoneNo;
-    private String password;
     private Boolean admin;
-    private Boolean enable;
+
+
+    @Column(nullable = false, unique = true, length = 60)
+    private String username;
+    @NotBlank
+    private String password;
+    private int enabled;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "responsibles_roles", joinColumns = @JoinColumn(name = "responsibles_id"),
+            inverseJoinColumns = @JoinColumn(name = "roles_id"))
+    private Set<Role> roles;
+
 
     @ManyToOne
     private Department department;
@@ -87,6 +104,14 @@ public class Responsible {
         this.phoneNo = phoneNo;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -103,12 +128,12 @@ public class Responsible {
         this.admin = admin;
     }
 
-    public Boolean getEnable() {
-        return enable;
+    public int getEnabled() {
+        return enabled;
     }
 
-    public void setEnable(Boolean enable) {
-        this.enable = enable;
+    public void setEnabled(int enabled) {
+        this.enabled = enabled;
     }
 
     public Department getDepartment() {
@@ -119,5 +144,11 @@ public class Responsible {
         this.department = department;
     }
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
 
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 }

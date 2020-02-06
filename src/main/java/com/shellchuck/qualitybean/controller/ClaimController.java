@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -83,6 +85,8 @@ public class ClaimController {
     @RequestMapping("/delete/{id}")
     public String deleteClaim(@PathVariable Integer id) {
         Claim claim = claimRepository.findById(id).get();
+        List<Analysis> allByClaimId = analysisRepository.findAllByClaimId(claim.getId());
+        allByClaimId.forEach(a -> analysisRepository.delete(a));
         claimRepository.delete(claim);
         return "redirect:/app/claim/list";
     }
@@ -93,6 +97,21 @@ public class ClaimController {
         model.addAttribute("allClaims", allClaims);
         return "/claim/app-claim-list";
     }
+
+    @RequestMapping(value = "/listcust", method = RequestMethod.GET)
+    public String listClaimsByCustomer(Model model, @RequestParam String customer) {
+        List<Claim> allClaims = claimRepository.findAllByCustomerName(customer);
+        model.addAttribute("allClaims", allClaims);
+        return "/claim/app-claim-list";
+    }
+
+    @RequestMapping(value = "/listcomm", method = RequestMethod.GET)
+    public String listClaimsByCommodity(Model model, @RequestParam String commodity) {
+        List<Claim> allClaims = claimRepository.findAllByCustomerCommodity(commodity);
+        model.addAttribute("allClaims", allClaims);
+        return "/claim/app-claim-list";
+    }
+
 
     @RequestMapping(value = "/details/{id}", method = RequestMethod.GET)
     public String customerClaims(@PathVariable Integer id, Model model) {

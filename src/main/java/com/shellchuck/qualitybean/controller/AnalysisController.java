@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -52,7 +53,7 @@ public class AnalysisController {
         }
         analysisRepository.save(analysis);
         model.addAttribute("analysis", analysis);
-        return "redirect:/app/analysis/list";
+        return "redirect:/app/analysis/details/"+analysis.getId();
     }
 
     @RequestMapping(value = "/change/{id}", method = RequestMethod.GET)
@@ -86,6 +87,14 @@ public class AnalysisController {
         model.addAttribute("allAnalyses", allAnalyses);
         return "/analysis/app-analysis-list";
     }
+
+    @RequestMapping(value = "/listbydef", method = RequestMethod.GET)
+    public String listAnalysisByDef(Model model, @RequestParam String defect) {
+        List<Analysis> allAnalyses = analysisRepository.findAllByDefectName(defect);
+        model.addAttribute("allAnalyses", allAnalyses);
+        return "/analysis/app-analysis-list";
+    }
+
 
     @RequestMapping(value = "/details/{id}", method = RequestMethod.GET)
     public String customerAnalysis(@PathVariable Integer id, Model model) {

@@ -5,7 +5,6 @@ import com.shellchuck.qualitybean.repository.ClaimRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -17,9 +16,12 @@ public class HomeController {
         this.claimRepository = claimRepository;
     }
 
-
-
     @RequestMapping("/")
+    public String index() {
+        return "/home/index";
+    }
+
+    @RequestMapping("/home")
     public String home() {
         return "/home/index";
     }
@@ -32,6 +34,11 @@ public class HomeController {
     @ModelAttribute("recentClaims")
     public List<Claim> getRecentClaims() {
         return claimRepository.findFirst3ByOrderByCreatedOnDesc();
+    }
+
+    @RequestMapping("/list")
+    public String test() {
+        return "/list";
     }
 
 }

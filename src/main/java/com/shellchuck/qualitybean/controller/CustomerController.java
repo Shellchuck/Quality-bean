@@ -3,6 +3,8 @@ package com.shellchuck.qualitybean.controller;
 import com.shellchuck.qualitybean.entity.Customer;
 import com.shellchuck.qualitybean.repository.ClaimRepository;
 import com.shellchuck.qualitybean.repository.CustomerRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.Valid;
@@ -42,7 +45,7 @@ public class CustomerController {
         }
         customerRepository.save(customer);
         model.addAttribute("customer", customer);
-        return "redirect:/app/customer/list";   // powinno byc na app main page
+        return "redirect:/app/customer/list";
     }
 
     @RequestMapping(value = "/change/{id}", method = RequestMethod.GET)
@@ -59,20 +62,23 @@ public class CustomerController {
         }
         customerRepository.save(customer);
         model.addAttribute("customer", customer);
-        return "redirect:/app/customer/list";   // powinno byc na app main page
+        return "redirect:/app/customer/list";
     }
 
-    @RequestMapping("/delete/{id}")
-    public String deleteCustomer(@PathVariable Integer id) {
+    @RequestMapping("/delete/{id}")   // flash messages!!!
+    public String deleteCustomer(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
         Customer customer = customerRepository.findById(id).get();
         customerRepository.delete(customer);
-        return "redirect:/app/customer/list";   // powinno byc na app main page
+        redirectAttributes.addFlashAttribute("message", "Customer has been deleted");
+        return "redirect:/app/customer/list";
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String listCustomer(Model model) {
+    @RequestMapping(value = "/list", method = RequestMethod.GET)   // Paginacja!!!
+    public String listCustomer(Model model, Pageable pageable) {
         List<Customer> allCustomers = customerRepository.findAll();
         model.addAttribute("allCustomers", allCustomers);
+//        Page<Customer> page = customerRepository.findAll(pageable);
+//        model.addAttribute("page", page);
         return "/customer/app-customer-list";
     }
 

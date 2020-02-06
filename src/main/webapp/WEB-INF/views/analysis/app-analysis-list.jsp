@@ -8,8 +8,9 @@
 <body>
 <button type="button" onclick="location.href='/app'">User Panel</button><br/><br/>
 
-    Analyses:<br><hr>
-<%--    <button type="button" onclick="location.href='/app/claim/add'">Add new analyse</button><br/>--%>
+<form action="/app/analysis/listbydef" method="get">
+    <input type="text" placeholder="Enter defect type" name="defect"><input type="submit" value="search">
+</form><br/>
     <table border="1">
         <tr>
             <th scope="col">Analysis Code</th>
