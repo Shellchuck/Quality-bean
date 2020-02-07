@@ -78,7 +78,7 @@
 
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
-            <button onclick="location.href='/app'" class="rounded-circle border-0" id="sidebarToggle"></button>
+            <button onclick="location.href='/app/analysis/list'" class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
 
     </ul>
@@ -196,7 +196,7 @@
                                     <th scope="col">Responsible Person for claim management</th>
                                     <th scope="col">Current status</th>
                                     <th scope="col">Analyses</th>
-                                    <th style="text-decoration: " scope="col">Actions</th>
+                                    <th scope="col">Actions</th>
                                 </tr>
                                 <tr>
                                     <td><c:out value="${claim.issueNo}"/></td>
@@ -224,6 +224,7 @@
                                         <p align="left" class="mb-4"><a href="/app/claim/change/${claim.id}" class="btn btn-secondary btn-icon-split">Edit claim</a></p>
                                         <p align="left" class="mb-4"><a href="/app/claim/delete/${claim.id}" class="btn btn-danger btn-icon-split">Delete claim</a></p>
                                         <p align="left" class="mb-4"><a href="/app/analysis/add/${claim.id}" class="btn btn-success btn-icon-split">Open new Analysis</a></p>
+                                    </td>
                                 </tr>
                             </table>
                         </div>

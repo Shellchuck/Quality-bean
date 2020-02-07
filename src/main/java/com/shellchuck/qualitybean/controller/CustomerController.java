@@ -85,9 +85,14 @@ public class CustomerController {
     @RequestMapping(value = "/details/{id}", method = RequestMethod.GET)
     public String customerDetails(@PathVariable Integer id, Model model) {
         Customer customer = customerRepository.findById(id).get();
+
         model.addAttribute("customer", customer);
         return "/customer/app-customer-details";
     }
+
+
+
+
 
 
 

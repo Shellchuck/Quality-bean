@@ -168,6 +168,13 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
+
+                <c:if test="${not empty message}">
+                    <div class="alert alert-success">
+                            ${message}
+                    </div>
+                </c:if>
+
                 <!-- Page Heading -->
 
                 <p align="left" class="mb-4"><a href="/app/claim/add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Add new claim</a></p>

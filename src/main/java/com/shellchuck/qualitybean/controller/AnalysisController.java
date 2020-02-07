@@ -46,14 +46,15 @@ public class AnalysisController {
         return "/analysis/app-analysis-add";
     }
 
-    @RequestMapping(value = "/add/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/add/{claimid}", method = RequestMethod.POST)
     public String saveAnalysis(@Valid Analysis analysis, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "/analysis/app-analysis-add";
         }
         analysisRepository.save(analysis);
         model.addAttribute("analysis", analysis);
-        return "redirect:/app/analysis/details/"+analysis.getId();
+//        return "redirect:/app/analysis/details/"+analysis.getId();
+        return "redirect:/app/analysis/list";
     }
 
     @RequestMapping(value = "/change/{id}", method = RequestMethod.GET)

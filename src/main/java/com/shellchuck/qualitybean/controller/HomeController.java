@@ -5,8 +5,13 @@ import com.shellchuck.qualitybean.repository.ClaimRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class HomeController {
@@ -27,7 +32,15 @@ public class HomeController {
     }
 
     @RequestMapping("/app")
-    public String app() {
+    public String app(RedirectAttributes redirectAttributes) {
+        List<Claim> allClaims = claimRepository.findAll();
+        List<Claim> delayedClaims = allClaims.stream().filter(c -> (("opened").equals(c.getStatus()) || ("delayed").equals(c.getStatus())) && ChronoUnit.SECONDS.between(LocalDateTime.now(), c.getCreatedOn()) >= 6 * 60 * 60).collect(Collectors.toList());
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Warning. Delayed responses for following claims: ");
+        for (Claim claim : delayedClaims) { stringBuilder.append(claim.getDescription()).append(", ");
+        }
+        System.out.println(stringBuilder.toString());
+        redirectAttributes.addFlashAttribute("message", stringBuilder.toString());
         return "/home/app-main-page";
     }
 
@@ -36,9 +49,9 @@ public class HomeController {
         return claimRepository.findFirst3ByOrderByCreatedOnDesc();
     }
 
-    @RequestMapping("/list")
-    public String test() {
-        return "/list";
-    }
+//    @ModelAttribute("delayedClaims")
+//    public List<Claim> getDelayedClaims() {
+//        return claimRepository.findFirst3ByOrderByCreatedOnDesc();
+//    }
 
 }

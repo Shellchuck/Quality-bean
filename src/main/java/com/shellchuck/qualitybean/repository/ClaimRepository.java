@@ -18,7 +18,7 @@ public interface ClaimRepository extends JpaRepository<Claim, Integer> {
     @Query(value = "SELECT * FROM claims JOIN customers ON customer_id = customers.id WHERE name LIKE CONCAT('%', :name, '%')", nativeQuery = true)
     List<Claim> findAllByCustomerName(@Param("name") String name);
 
-    @Query(value = "SELECT * FROM claims JOIN claims_commodities ON claims.id = claims_commodities.commodities_id JOIN commodities ON commodities.id = claims_commodities.commodities_id HAVING commodities.commodity_name LIKE  CONCAT('%', ?1, '%')", nativeQuery = true)
+    @Query(value = "SELECT * FROM claims JOIN claims_commodities ON claims.id = claims_commodities.claims_id JOIN commodities ON commodities.id = claims_commodities.commodities_id HAVING commodities.commodity_name LIKE  CONCAT('%', ?1, '%')", nativeQuery = true)
     List<Claim> findAllByCustomerCommodity(String name);
 
 }
