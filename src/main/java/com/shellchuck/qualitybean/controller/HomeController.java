@@ -2,14 +2,18 @@ package com.shellchuck.qualitybean.controller;
 
 import com.shellchuck.qualitybean.entity.Claim;
 import com.shellchuck.qualitybean.repository.ClaimRepository;
+import org.apache.catalina.filters.RemoteIpFilter;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,17 +36,13 @@ public class HomeController {
     }
 
     @RequestMapping("/app")
-    public String app(RedirectAttributes redirectAttributes) {
+    public String app(Model model) {
         List<Claim> allClaims = claimRepository.findAll();
-        List<Claim> delayedClaims = allClaims.stream().filter(c -> (("opened").equals(c.getStatus()) || ("delayed").equals(c.getStatus())) && ChronoUnit.SECONDS.between(LocalDateTime.now(), c.getCreatedOn()) >= 6 * 60 * 60).collect(Collectors.toList());
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Warning. Delayed responses for following claims: ");
-        for (Claim claim : delayedClaims) { stringBuilder.append(claim.getDescription()).append(", ");
-        }
-        System.out.println(stringBuilder.toString());
-        redirectAttributes.addFlashAttribute("message", stringBuilder.toString());
+        List<Claim> delayedClaims = allClaims.stream().filter(c -> /*(("opened").equals(c.getStatus()) || ("delayed").equals(c.getStatus())) &&*/ Math.abs((Duration.between(LocalDateTime.now(), c.getCreatedOn()).getSeconds())) >= (24 * 60 * 60)).collect(Collectors.toList());
+        model.addAttribute("delayedClaims", delayedClaims);
         return "/home/app-main-page";
     }
+
 
     @ModelAttribute("recentClaims")
     public List<Claim> getRecentClaims() {

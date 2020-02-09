@@ -37,6 +37,7 @@ public class Responsible {
 
 
     @Column(nullable = false, unique = true, length = 60)
+    @NotBlank
     private String username;
     @NotBlank
     private String password;

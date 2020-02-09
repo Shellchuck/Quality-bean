@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/app/**").authenticated()
-                .and().formLogin().loginPage("/login").successForwardUrl("/app")
+                .and().formLogin().loginPage("/login").defaultSuccessUrl("/app")
                 .and().logout().logoutSuccessUrl("/")
                 .permitAll()
                 .and().exceptionHandling().accessDeniedPage("/403");

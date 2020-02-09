@@ -168,10 +168,17 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-
-                <c:if test="${not empty message}">
+                <%--<c:if test="${not empty message}">
                     <div class="alert alert-success">
                             ${message}
+                    </div>
+                </c:if>--%>
+                <c:if test="${not empty delayedClaims}">
+                    <div class="alert alert-warning">
+                        <p>Alert!! Delayed responses present for following claims:</p>
+                        <c:forEach items="${delayedClaims}" var="delayedClaim">
+                            <a href="/app/claim/details/${delayedClaim.id}">${delayedClaim.issueNo}<br/>
+                        </c:forEach>
                     </div>
                 </c:if>
 
