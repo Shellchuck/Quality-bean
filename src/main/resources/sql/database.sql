@@ -62,7 +62,7 @@ CREATE TABLE responsibles (
                              id INT NOT NULL AUTO_INCREMENT,
                              first_name VARCHAR(255),
                              last_name VARCHAR(255),
-                             employee_no VARCHAR(255),
+                             employee_code VARCHAR(255),
                              email VARCHAR(255),
                              phone VARCHAR(63),
                              password VARCHAR(255),

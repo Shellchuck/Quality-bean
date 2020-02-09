@@ -32,3 +32,11 @@ build/
 /mvnw.cmd
 /mvnw
 /.mvn/
+
+/src/main/resources/sql/quality_categories.sql
+/src/main/resources/sql/quality_commodities.sql
+/src/main/resources/sql/quality_customers.sql
+/src/main/resources/sql/quality_defects.sql
+/src/main/resources/sql/quality_departments.sql
+/src/main/resources/sql/quality_responsibles.sql
+/src/main/resources/sql/quality_statuses.sql
