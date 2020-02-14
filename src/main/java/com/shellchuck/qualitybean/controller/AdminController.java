@@ -56,17 +56,4 @@ public class AdminController {
 
 
 
-    /*@GetMapping("/create-user")
-    @ResponseBody
-    public String createUser() {
-        Responsible responsible = new Responsible();
-        responsible.setFirstName("Arkadiusz");
-        responsible.setLastName("Józwiak");
-        responsible.setEmail("aj@onet.pl");
-        responsible.setUsername("Arek");
-        responsible.setPassword("mleczarnia");
-        responsibleService.saveResponsible(responsible);
-        return "User created";
-    }*/
-
 }
