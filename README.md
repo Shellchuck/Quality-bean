@@ -1,4 +1,5 @@
-# Quality-bean
+# Quality Bean
+
 This application is designed to efficiently support management of official claims and notifications issued by customers within production processes.
 
 Used technologies: Spring Boot, Spring Data JPA, Spring MVC, MySQL database.
